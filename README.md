@@ -98,13 +98,18 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### Step 3: Get a free API key
+### Step 3: Get a free API key (Groq — recommended)
 
-We recommend **Groq** — it is fast, free, and takes under a minute to set up:
+Groq is fast, free, and takes under a minute. No credit card needed.
 
-1. Go to [console.groq.com](https://console.groq.com) and sign up (Google/GitHub login works)
-2. Go to **API Keys** → **Create API Key**
-3. Copy the key (starts with `gsk_`)
+1. Open [console.groq.com](https://console.groq.com)
+2. Click **Sign Up** (you can use your Google or GitHub account)
+3. Once logged in, click **API Keys** in the left sidebar
+4. Click **Create API Key**
+5. Give it any name (e.g. `workshop`) and click **Submit**
+6. **Copy the key immediately** — it starts with `gsk_` and you won't be able to see it again
+
+> **Don't have a Google/GitHub account?** You can also sign up with email. See the [other free providers](#you-do-not-need-a-paid-api-key) table above for alternatives like Google AI Studio or GitHub Models.
 
 ### Step 4: Create your `.env` file
 
@@ -112,9 +117,8 @@ We recommend **Groq** — it is fast, free, and takes under a minute to set up:
 cp .env.example .env
 ```
 
-Open the `.env` file and replace the bottom section with your provider's values.
+Now open the `.env` file in any text editor and replace the bottom section with your Groq values:
 
-**Example `.env` for Groq (free):**
 ```
 OPENAI_API_KEY=gsk_paste_your_groq_key_here
 OPENAI_BASE_URL=https://api.groq.com/openai/v1
@@ -122,24 +126,40 @@ MODEL=llama-3.3-70b-versatile
 TEMPERATURE=0.2
 ```
 
-**Example `.env` for Google AI Studio (free):**
+That's it — just these 4 lines. Make sure there are **no spaces** around the `=` signs.
+
+<details>
+<summary>Using Google AI Studio instead?</summary>
+
 ```
 OPENAI_API_KEY=paste_your_google_ai_key_here
 OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
 MODEL=gemini-2.0-flash
 TEMPERATURE=0.2
 ```
+</details>
 
-**Example `.env` for OpenAI (paid):**
+<details>
+<summary>Using OpenAI (paid)?</summary>
+
 ```
 OPENAI_API_KEY=sk-paste_your_openai_key_here
 MODEL=gpt-4o-mini
 TEMPERATURE=0.2
 ```
+</details>
 
-> **Tip:** The `.env.example` file has all provider configs with sign-up links. Just pick one.
+### Step 5: Test your setup
 
-### Step 5: Run the scripts
+Run this to make sure everything works:
+
+```bash
+python 01_basic_prompting.py
+```
+
+You should see the LLM's response printed in your terminal. If you get an error, see [Troubleshooting](#troubleshooting) below.
+
+### Step 6: Run the rest of the scripts
 
 ```bash
 python 01_basic_prompting.py

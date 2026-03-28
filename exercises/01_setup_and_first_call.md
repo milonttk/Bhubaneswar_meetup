@@ -4,12 +4,38 @@
 Make your first successful LLM call from Python.
 
 ## Steps
-1. Create and activate a virtual environment
-2. Install dependencies with `pip install -r requirements.txt`
-3. Create `.env` from `.env.example` and uncomment the provider you want to use
-   - **No credit card?** Use Groq, Google AI Studio, or GitHub Models (all free)
-   - See `.env.example` for ready-to-use configs for each provider
-4. Run `python 01_basic_prompting.py`
+
+1. **Create and activate a virtual environment**
+   - Mac/Linux: `python -m venv .venv && source .venv/bin/activate`
+   - Windows PowerShell: `python -m venv .venv` then `.venv\Scripts\Activate.ps1`
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Get a free API key from Groq** (no credit card needed)
+   - Go to [console.groq.com](https://console.groq.com) and sign up (Google/GitHub login works)
+   - Click **API Keys** in the left sidebar → **Create API Key**
+   - Copy the key (starts with `gsk_`)
+
+4. **Create your `.env` file**
+   ```bash
+   cp .env.example .env
+   ```
+   Open `.env` and replace the bottom section with:
+   ```
+   OPENAI_API_KEY=gsk_paste_your_groq_key_here
+   OPENAI_BASE_URL=https://api.groq.com/openai/v1
+   MODEL=llama-3.3-70b-versatile
+   TEMPERATURE=0.2
+   ```
+
+5. **Run your first script**
+   ```bash
+   python 01_basic_prompting.py
+   ```
+   You should see the LLM's response in your terminal.
 
 ## Try changing
 - Ask for 1 line instead of 3 bullet points
