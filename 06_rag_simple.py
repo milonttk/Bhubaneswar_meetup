@@ -15,7 +15,7 @@ questions_path = Path("data/rag_questions.json")
 chunks = load_and_chunk(handbook_path)
 
 sample_questions = json.loads(questions_path.read_text(encoding="utf-8"))
-question = sample_questions[0]["question"]
+question = sample_questions[1]["question"]
 
 top_chunks = retrieve_top_k(question, chunks, k=3)
 context = "\n\n---\n\n".join(

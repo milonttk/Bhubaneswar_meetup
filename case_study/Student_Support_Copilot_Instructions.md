@@ -1,148 +1,111 @@
 # Student Support Copilot - Case Study Instructions
 
 ## Audience
-IITM BS workshop participants learning how to use LLMs with Python.
+IITM BS Bhubaneswar Meetup participants learning to use LLMs with Python.
 
-## Case study idea
-Build a small **AI copilot for student support** using:
-- a fictional program handbook
-- a set of incoming student support tickets
-- Python + an LLM API
+## Overview
+Build a small **AI copilot for student support** using a fictional program handbook, student support tickets, and Python + an LLM API.
 
-## Why this is a good workshop case
-This case is strong for a mixed cohort because it includes:
-- **prompting** for beginners
-- **structured JSON output** for applied thinking
-- **retrieval** for grounded responses
-- **evaluation** for intermediate learners
-
-It also feels real without requiring a large backend or a complex framework.
+## Why this case study?
+- Covers **prompting**, **structured output**, **retrieval**, and **evaluation** in one project
+- Feels real without requiring a large backend or complex framework
 
 ---
 
 ## Learning objectives
 
-By the end of the case study, students should be able to:
+By the end, every learner should be able to:
 
-1. send a prompt from Python to an LLM
-2. ask for structured outputs
-3. retrieve relevant context from a document
-4. draft a response grounded in policy text
-5. identify when a human escalation is safer than auto-resolution
+1. Send a prompt from Python to an LLM
+2. Request and parse structured JSON output
+3. Retrieve relevant context from a document
+4. Draft a response grounded in policy text
+5. Decide when human escalation is safer than auto-resolution
 
 ---
 
 ## Dataset files
 
-### `data/program_handbook.md`
-A fictional policy handbook with sections on:
-- quiz windows
-- late penalties
-- regrading
-- exam rescheduling
-- fee refunds
-- technical issues
-- office hours
-- academic integrity
-- certificates
-- accessibility and accommodations
+| File | Description |
+|------|-------------|
+| `data/program_handbook.md` | Fictional policy handbook (late penalties, regrading, refunds, exams, office hours, academic integrity, accessibility, etc.) |
+| `data/student_support_tickets.jsonl` | Realistic student support tickets |
+| `data/rag_questions.json` | Starter questions for the retrieval demo |
 
-### `data/student_support_tickets.jsonl`
-A small support inbox with realistic student questions.
-
-### `data/rag_questions.json`
-Starter questions for the retrieval demo.
-
-> Note: The dataset is fictional and meant only for classroom use.
+> All data is fictional and meant only for workshop use.
 
 ---
 
-## Recommended workflow for the session
+## Workflow for the session
 
-### Part 1 - Warm-up (10-15 mins)
-Run:
+### Part 1 — Warm-up (10-15 min)
 ```bash
 python 01_basic_prompting.py
 python 02_prompt_patterns.py
 python 03_structured_output.py
 ```
+Discuss: What changed when the prompt became more specific? Why is JSON output easier for programs to consume?
 
-Discuss:
-- what changed when the prompt became more specific
-- why JSON output is easier for programs to use
-
-### Part 2 - Retrieval demo (15-20 mins)
-Run:
+### Part 2 — Retrieval demo (15-20 min)
 ```bash
 python 06_rag_simple.py
 ```
+Discuss: Why does the handbook matter? How does retrieval reduce hallucination? Why is "answer only from context" useful but not perfect?
 
-Discuss:
-- why the handbook matters
-- how retrieval reduces unsupported answers
-- why "answer only from context" is useful but not perfect
-
-### Part 3 - Main build (35-45 mins)
-Run:
+### Part 3 — Main build (35-45 min)
 ```bash
 python 07_case_study_support_copilot.py
 ```
 
-Students now have a baseline support copilot.
-
 ---
 
-## Student task
+## Learner task
 
 For each ticket, build a system that produces:
 
-1. `category`
-2. `priority`
-3. `needs_human_review`
-4. `policy_basis`
-5. `draft_reply`
+| Field | Type | Purpose |
+|-------|------|---------|
+| `category` | string | Classify the ticket |
+| `priority` | low / medium / high | Triage urgency |
+| `needs_human_review` | boolean | Flag sensitive cases |
+| `policy_basis` | string | Cite the relevant handbook section |
+| `draft_reply` | string | Student-facing response |
 
-### Good output characteristics
-A good answer should:
-- be polite
-- mention the relevant policy
-- avoid promising exceptions not in the handbook
-- escalate when misconduct, accessibility, or exceptional approval is involved
+### What makes a good output?
+- Polite and clear
+- Cites the relevant policy
+- Does **not** promise exceptions outside the handbook
+- Escalates when misconduct, accessibility, or exceptional approval is involved
 
 ---
 
 ## Beginner track
 
-Beginners should focus on:
-- running the scripts
-- reading the prompts
-- changing the user message
-- changing the system instruction
-- observing how the response changes
+Focus: Run scripts, read prompts, tweak inputs, observe what changes.
 
-### Beginner success criteria
-- They can make one successful LLM call
-- They can produce valid JSON
-- They can answer one handbook question using retrieval
+**Success criteria:**
+- Made one successful LLM call
+- Produced valid JSON output
+- Answered one handbook question using retrieval
 
 ---
 
 ## Intermediate track
 
-Intermediate learners should extend the baseline.
+Focus: Extend the baseline — improve reliability, not just style.
 
-### Suggested tasks
-1. improve the prompt so the reply is shorter and more consistent
-2. add validation checks after parsing JSON
-3. attach chunk ids or short citations to the answer
-4. compare two models on the same ticket
-5. detect cases that should always go to a human reviewer
-6. create a simple evaluation sheet for 5 tickets
+**Suggested tasks:**
+1. Tighten the prompt for shorter, more consistent replies
+2. Add JSON validation after parsing
+3. Attach chunk IDs or citations to answers
+4. Compare two models on the same ticket
+5. Add rules for automatic human-review flagging
+6. Build a simple evaluation sheet for 5 tickets
 
-### Intermediate success criteria
-- They improve reliability, not just style
-- They can explain why retrieval matters
-- They can identify failure modes
+**Success criteria:**
+- Improved reliability (not just cosmetics)
+- Can explain why retrieval matters
+- Can identify failure modes
 
 ---
 
@@ -166,81 +129,56 @@ Students do not need to use exactly these labels, but labels should be consisten
 
 ## Suggested priority rubric
 
-### Low
-Routine question, no urgent loss or escalation risk
-
-### Medium
-Deadline impact or important learner action required
-
-### High
-Serious escalation, policy exception, academic integrity, accessibility, or missed exam with evidence
+| Priority | When to use |
+|----------|-------------|
+| **Low** | Routine question, no urgent loss or escalation risk |
+| **Medium** | Deadline impact or important learner action required |
+| **High** | Serious escalation, policy exception, academic integrity, accessibility, or missed exam with evidence |
 
 ---
 
-## Facilitator prompts for discussion
+## Discussion prompts (for facilitator)
 
-- If the LLM gives a polished answer that is not in policy, is that a good answer?
-- Should a support bot answer academic integrity complaints automatically?
-- When should an AI system stop and ask for human review?
-- What is the difference between memory and retrieval here?
+- A polished answer that isn't in the handbook — is that a *good* answer?
+- Should a bot handle academic integrity complaints automatically?
+- When should an AI system stop and hand off to a human?
+- What is the difference between memory (script 05) and retrieval (script 06)?
 
 ---
 
-## Sample extension ideas
+## Extension ideas
 
-### Extension A - Add confidence
-Ask the model to produce:
-- confidence score
-- reason for low confidence
-
-### Extension B - Add evaluation
-Create a small gold set with expected category + escalation decision.
-
-### Extension C - Better retrieval
-Swap TF-IDF retrieval with embeddings.
-
-### Extension D - Frontend
-Wrap the system in Streamlit.
+| Extension | What to do |
+|-----------|------------|
+| **A — Confidence** | Add a confidence score + reason for low confidence to the output |
+| **B — Evaluation** | Create a gold set with expected category + escalation decisions |
+| **C — Better retrieval** | Swap TF-IDF with embedding-based retrieval |
+| **D — Frontend** | Wrap the system in Streamlit |
 
 ---
 
 ## Common failure modes
 
-1. **Hallucinated policy**
-   - Fix: force answers to cite retrieved text
-
-2. **Overconfident promises**
-   - Fix: explicitly say "do not promise exceptions outside policy"
-
-3. **Wrong routing**
-   - Fix: add human-review rules for sensitive cases
-
-4. **Inconsistent JSON**
-   - Fix: validate and retry
-
-5. **Weak retrieval**
-   - Fix: tune chunk size and top-k
+| Problem | Fix |
+|---------|-----|
+| **Hallucinated policy** | Force answers to cite retrieved text |
+| **Overconfident promises** | Add "do not promise exceptions outside policy" to prompt |
+| **Wrong routing** | Add human-review rules for sensitive cases |
+| **Inconsistent JSON** | Validate and retry on parse failure |
+| **Weak retrieval** | Tune chunk size and top-k |
 
 ---
 
-## Deliverable for student teams
+## Team deliverables
 
-Each team should submit:
-- updated Python code
-- one screenshot or terminal output
-- 2 example tickets with outputs
-- a short note on one limitation of their solution
+Each team submits:
+1. Updated Python code
+2. One screenshot or terminal output
+3. Two example tickets with outputs
+4. A short note on one limitation of their solution
 
 ---
 
-## Closing message for participants
+## Closing message
 
-You did not just "call an API".
-You combined:
-- prompting
-- output design
-- retrieval
-- policy grounding
-- decision-making
-
-That combination is what turns an LLM demo into a usable application.
+You didn't just "call an API." You combined **prompting, output design, retrieval, policy grounding, and decision-making** — that's what turns an LLM demo into a usable application.

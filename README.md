@@ -1,6 +1,6 @@
 # Harnessing LLMs with Python - IITM BS Workshop
 
-A hands-on workshop repo for a 2.5-3 hour session on using Large Language Models (LLMs) with Python.
+A hands-on workshop repo for a 3 hour session on using Large Language Models (LLMs) with Python.
 
 This repo is designed for mixed-skill participants:
 - **Beginners** can run and modify ready-made scripts.
@@ -206,30 +206,6 @@ For each ticket, build a copilot that:
 ## Important note about the dataset
 
 The dataset in this repo is **fictional and created for teaching purposes**. It is inspired by common online-learning support workflows, but it does **not** represent the real IITM BS program policies.
-
-## Teaching notes
-
-### Conceptual topics to explain briefly
-- Tokens
-- Context window
-- Temperature
-- System vs user messages
-- Hallucinations
-- Structured output
-- Retrieval vs memory vs fine-tuning
-
-### What not to overdo
-- Transformer math
-- Attention equations
-- Too many frameworks at once
-- Complex vector databases for a first workshop
-
-## Minimal discussion prompts for the room
-
-- When is an LLM enough by itself?
-- When do we need retrieval?
-- Why do structured outputs matter in real systems?
-- Why is evaluation harder than the demo?
 
 ## Troubleshooting
 

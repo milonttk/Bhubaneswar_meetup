@@ -12,7 +12,7 @@ Observe differences across models.
 
    **Groq (free):**
    ```bash
-   python 04_model_compare.py --models llama-3.3-70b-versatile llama-3.1-8b-instant gemma2-9b-it
+   python 04_model_compare.py --models llama-3.3-70b-versatile llama-3.1-8b-instant meta-llama/llama-4-scout-17b-16e-instruct
    ```
 
    **Google AI Studio (free):**
