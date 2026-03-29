@@ -5,10 +5,14 @@ from workshop_client import ask_json
 
 console = Console()
 
+# ticket = """
+# Hi team, I missed the quiz because my home internet was down for two days.
+# The quiz window closed yesterday night. Can I get another attempt?
+# My course is Intro to Data Science.
+# """.strip()
+
 ticket = """
-Hi team, I missed the quiz because my home internet was down for two days.
-The quiz window closed yesterday night. Can I get another attempt?
-My course is Intro to Data Science.
+Ankit, 22, Delhi.
 """.strip()
 
 messages = [
@@ -18,8 +22,10 @@ messages = [
             "You are an operations assistant. "
             "Return valid JSON only. "
             "Use this schema: "
-            '{"category": str, "priority": "low|medium|high", "needs_human_review": bool, '
-            '"student_problem": str, "draft_reply": str}'
+             '{"name": str, "age": int, "city": str, '
+            '"country": "India"}'
+            # '{"category": str, "priority": "low|medium|high", "needs_human_review": bool, '
+            # '"student_problem": str, "draft_reply": str}'
         ),
     },
     {

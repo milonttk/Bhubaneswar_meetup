@@ -12,7 +12,10 @@ messages = [
     },
     {
         "role": "user",
-        "content": "Explain what an LLM is in exactly 3 bullet points for a first-year college student.",
+        # "content": "Explain AI like I'm 10 years old.",
+        # "content": "Explain AI in exactly 1 sentence.",
+        # "content": "Explain AI as if you're a rapper.",
+        "content": "Explain AI with one bullet point, dont use jargons,explain in simple english, try to flow the constraint.",
     },
 ]
 
